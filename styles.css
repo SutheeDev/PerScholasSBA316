@@ -50,6 +50,26 @@ body {
   text-align: center;
 }
 
+.letter {
+  display: grid;
+  place-items: center;
+}
+
+.top,
+.bottom {
+  grid-area: 1/1;
+}
+
+.top {
+  z-index: 3;
+  opacity: 0;
+}
+
+.bottom {
+  z-index: 1;
+  color: var(--black1);
+}
+
 footer {
   text-align: center;
 }
