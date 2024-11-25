@@ -40,16 +40,20 @@ document.addEventListener("keydown", (e) => {
     let removedChar = "";
     if (char === letterArr[0]) {
       removedChar = letterArr.shift();
-      // removedText.push(removedChar);
+      removedText.push(removedChar);
       textToDisplay += removedChar;
       textDisplay.innerHTML = textToDisplay;
     } else {
       removedChar = letterArr.shift();
-      // removedText.push(removedChar);
+      removedText.push(removedChar);
       const wrongText = `<span style="color:red;">${removedChar}</span>`;
       textToDisplay += wrongText;
       textDisplay.innerHTML = textToDisplay;
     }
+  } else if (char === "Backspace") {
+    const returnedChar = removedText.pop();
+    letterArr.unshift(returnedChar);
+    textDisplay.innerHTML = removedText.join("");
   }
 });
 
