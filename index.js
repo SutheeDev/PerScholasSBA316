@@ -1,5 +1,4 @@
-let letterStr =
-  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis dolore voluptas quaerat, tenetur placeat ipsa ullam iste aliquid, et neque tempora! Natus earum officia voluptate corporis dolores ab reprehenderit! Numquam, minus. Debitis, animi id repellendus in expedita, adipisci ullam molestiae explicabo cumque ducimus modi repellat dolor minima quo, corrupti ipsam temporibus labore voluptatem illum? Suscipit consectetur odio eligendi eveniet fugit doloribus deserunt! Debitis, corporis laboriosam? Deserunt dicta recusandae omnis reiciendis!";
+let letterStr = "Example sentence you can type";
 
 const text = document.getElementById("text");
 const textContainer = document.createElement("div");
@@ -38,15 +37,35 @@ const letterArr = letterStr.split("");
 document.addEventListener("keydown", (e) => {
   const char = e.key;
   if (char.length === 1) {
+    let removedChar = "";
     if (char === letterArr[0]) {
-      const removedChar = letterArr.shift();
+      removedChar = letterArr.shift();
+      // removedText.push(removedChar);
       textToDisplay += removedChar;
       textDisplay.innerHTML = textToDisplay;
     } else {
-      const removedChar = letterArr.shift();
+      removedChar = letterArr.shift();
+      // removedText.push(removedChar);
       const wrongText = `<span style="color:red;">${removedChar}</span>`;
       textToDisplay += wrongText;
       textDisplay.innerHTML = textToDisplay;
     }
   }
+});
+
+let currentIndex = 0;
+cursorLayer.addEventListener("input", (e) => {
+  if (
+    currentIndex < letterStr.length &&
+    e.inputType !== "deleteContentBackward"
+  ) {
+    cursorLayer.value = letterStr.slice(0, currentIndex + 1);
+    currentIndex++;
+  } else if (e.inputType === "deleteContentBackward") {
+    currentIndex--;
+    cursorLayer.value = letterStr.slice(0, currentIndex);
+  } else {
+    cursorLayer.value = letterStr;
+  }
+  console.log(currentIndex);
 });
