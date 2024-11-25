@@ -4,34 +4,42 @@ let letterStr =
 const text = document.getElementById("text");
 const textContainer = document.createElement("div");
 textContainer.classList.add("letter");
-const topText = document.createElement("textarea");
-const bottomText = document.createElement("textarea");
-topText.classList.add("top");
-bottomText.classList.add("bottom");
-// topText.textContent = letterStr;
-bottomText.textContent = letterStr;
-bottomText.setAttribute("value", letterStr);
-bottomText.setAttribute("disabled", true);
-textContainer.append(topText);
-textContainer.append(bottomText);
-// Try add h4 on another layer
+
+// Create three layers of typing area
 const textDisplay = document.createElement("h4");
+const cursorLayer = document.createElement("textarea");
+const exampleText = document.createElement("textarea");
+
+// Add classes
 textDisplay.classList.add("textDisplay");
+cursorLayer.classList.add("cursor");
+exampleText.classList.add("placeholder");
+
+// Add exampleText attribute and content
+exampleText.textContent = letterStr;
+exampleText.setAttribute("value", letterStr);
+exampleText.setAttribute("disabled", true);
+
+// Assemble the typing area
 let textToDisplay = "";
 let removedText = [];
 textDisplay.textContent = textToDisplay;
 textContainer.append(textDisplay);
+textContainer.append(cursorLayer);
+textContainer.append(exampleText);
 
+// Add the typing area into the text section
 text.prepend(textContainer);
-topText.focus();
+cursorLayer.focus();
 
 const letterArr = letterStr.split("");
-// topText.addEventListener("keydown", (e) => {
+
+// Listen to the key event in the window document
 document.addEventListener("keydown", (e) => {
   const char = e.key;
   if (char.length === 1) {
     if (char === letterArr[0]) {
-      console.log(char);
+      // console.log(char);
       const removedChar = letterArr.shift();
       textToDisplay += removedChar;
       textDisplay.innerHTML = textToDisplay;

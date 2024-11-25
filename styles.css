@@ -67,8 +67,8 @@ textarea {
   height: 100%;
 }
 
-.top,
-.bottom,
+.cursor,
+.placeholder,
 .textDisplay {
   grid-area: 1/1;
   width: 100%;
@@ -78,25 +78,28 @@ textarea {
   border: none;
 }
 
-.top {
+.textDisplay {
+  /* opacity: 0; */
   z-index: 3;
-  opacity: 0;
-  color: var(--black1);
+  color: var(--white);
   background: transparent;
 }
 
-.top:focus {
+.cursor {
+  z-index: 2;
+  opacity: 1;
+  color: var(--whtie);
+  background: transparent;
+}
+
+.cursor:focus {
   outline: none;
 }
-.bottom {
+
+.placeholder {
   z-index: 1;
   color: var(--black1);
   background-color: var(--black);
-}
-
-.textDisplay {
-  z-index: 2;
-  color: var(--white);
 }
 
 footer {
