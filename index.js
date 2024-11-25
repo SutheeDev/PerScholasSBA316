@@ -4,18 +4,21 @@ let letterStr =
 const text = document.getElementById("text");
 const textContainer = document.createElement("div");
 textContainer.classList.add("letter");
-const topText = document.createElement("h4");
-const bottomText = document.createElement("h4");
+const topText = document.createElement("textarea");
+const bottomText = document.createElement("textarea");
 topText.classList.add("top");
 bottomText.classList.add("bottom");
-topText.textContent = letterStr;
+// topText.textContent = letterStr;
 bottomText.textContent = letterStr;
+bottomText.setAttribute("value", letterStr);
+bottomText.setAttribute("disabled", true);
 textContainer.append(topText);
 textContainer.append(bottomText);
 text.prepend(textContainer);
+topText.focus();
 
 const letterArr = letterStr.split("");
-document.addEventListener("keydown", (e) => {
+topText.addEventListener("keydown", (e) => {
   const char = e.key;
   if (char.length === 1) {
     if (char === letterArr[0]) {
