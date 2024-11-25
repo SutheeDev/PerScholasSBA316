@@ -22,6 +22,15 @@ body {
   height: 100vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+input,
+textarea {
+  font-family: "Red Hat Text", sans-serif;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -59,7 +68,8 @@ body {
 }
 
 .top,
-.bottom {
+.bottom,
+.textDisplay {
   grid-area: 1/1;
   width: 100%;
   height: 100%;
@@ -70,8 +80,8 @@ body {
 
 .top {
   z-index: 3;
-  opacity: 1;
-  color: var(--white);
+  opacity: 0;
+  color: var(--black1);
   background: transparent;
 }
 
@@ -82,6 +92,11 @@ body {
   z-index: 1;
   color: var(--black1);
   background-color: var(--black);
+}
+
+.textDisplay {
+  z-index: 2;
+  color: var(--white);
 }
 
 footer {

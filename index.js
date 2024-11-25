@@ -14,16 +14,32 @@ bottomText.setAttribute("value", letterStr);
 bottomText.setAttribute("disabled", true);
 textContainer.append(topText);
 textContainer.append(bottomText);
+// Try add h4 on another layer
+const textDisplay = document.createElement("h4");
+textDisplay.classList.add("textDisplay");
+let textToDisplay = "";
+let removedText = [];
+textDisplay.textContent = textToDisplay;
+textContainer.append(textDisplay);
+
 text.prepend(textContainer);
 topText.focus();
 
 const letterArr = letterStr.split("");
-topText.addEventListener("keydown", (e) => {
+// topText.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
   const char = e.key;
   if (char.length === 1) {
     if (char === letterArr[0]) {
       console.log(char);
-      letterArr.shift();
+      const removedChar = letterArr.shift();
+      textToDisplay += removedChar;
+      textDisplay.innerHTML = textToDisplay;
+    } else {
+      const removedChar = letterArr.shift();
+      const wrongText = `<span style="color:red;">${removedChar}</span>`;
+      textToDisplay += wrongText;
+      textDisplay.innerHTML = textToDisplay;
     }
   }
 });
