@@ -15,7 +15,7 @@ textDisplay.classList.add("textDisplay");
 cursorLayer.classList.add("cursor");
 exampleText.classList.add("placeholder");
 
-// Add exampleText attribute and content
+// Add attribute and content
 exampleText.textContent = letterStr;
 exampleText.setAttribute("value", letterStr);
 exampleText.setAttribute("disabled", true);
@@ -39,7 +39,6 @@ document.addEventListener("keydown", (e) => {
   const char = e.key;
   if (char.length === 1) {
     if (char === letterArr[0]) {
-      // console.log(char);
       const removedChar = letterArr.shift();
       textToDisplay += removedChar;
       textDisplay.innerHTML = textToDisplay;

@@ -63,7 +63,6 @@ textarea {
 .letter {
   display: grid;
   place-items: start;
-  background-color: wheat;
   height: 100%;
 }
 
@@ -79,7 +78,7 @@ textarea {
 }
 
 .textDisplay {
-  /* opacity: 0; */
+  opacity: 1;
   z-index: 3;
   color: var(--white);
   background: transparent;
@@ -88,8 +87,13 @@ textarea {
 .cursor {
   z-index: 2;
   opacity: 1;
-  color: var(--whtie);
   background: transparent;
+}
+
+#text .letter .cursor {
+  caret-color: var(--white);
+  color: var(--black1);
+  -webkit-caret-color: var(--white);
 }
 
 .cursor:focus {
@@ -97,6 +101,7 @@ textarea {
 }
 
 .placeholder {
+  opacity: 1;
   z-index: 1;
   color: var(--black1);
   background-color: var(--black);
