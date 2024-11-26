@@ -36,27 +36,42 @@ const letterArr = letterStr.split("");
 // Listen to the key event in the window document
 document.addEventListener("keydown", (e) => {
   const char = e.key;
-  if (char.length === 1) {
+  if (char.length === 1 || char.length === "Spacebar") {
     let removedChar = "";
     if (char === letterArr[0]) {
       removedChar = letterArr.shift();
       removedText.push(removedChar);
       textToDisplay += removedChar;
+      console.log(textToDisplay);
       textDisplay.innerHTML = textToDisplay;
     } else {
       removedChar = letterArr.shift();
       removedText.push(removedChar);
       const wrongText = `<span style="color:red;">${removedChar}</span>`;
       textToDisplay += wrongText;
+      console.log(textToDisplay);
       textDisplay.innerHTML = textToDisplay;
     }
   } else if (char === "Backspace") {
-    const returnedChar = removedText.pop();
-    letterArr.unshift(returnedChar);
-    textDisplay.innerHTML = removedText.join("");
+    if (textToDisplay) {
+      const spanRegex = /<span[^>]*>[^<]*<\/span>\s*$/;
+      const charRegex = /(\s|.)$/;
+
+      // Check for individual letter or span element
+      if (spanRegex.test(textToDisplay)) {
+        textToDisplay = textToDisplay.replace(spanRegex, "");
+      } else if (charRegex.test(textToDisplay)) {
+        textToDisplay = textToDisplay.replace(charRegex, "");
+      }
+      console.log(textToDisplay);
+      const returnedChar = removedText.pop();
+      letterArr.unshift(returnedChar);
+      textDisplay.innerHTML = textToDisplay;
+    }
   }
 });
 
+// Display or delete text on cursorLayer
 let currentIndex = 0;
 cursorLayer.addEventListener("input", (e) => {
   if (
@@ -71,5 +86,4 @@ cursorLayer.addEventListener("input", (e) => {
   } else {
     cursorLayer.value = letterStr;
   }
-  console.log(currentIndex);
 });
