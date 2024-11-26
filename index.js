@@ -41,6 +41,7 @@ document.addEventListener("keydown", (e) => {
     if (char === letterArr[0]) {
       removedChar = letterArr.shift();
       removedText.push(removedChar);
+      // console.log(removedText);
       textToDisplay += removedChar;
       console.log(textToDisplay);
       textDisplay.innerHTML = textToDisplay;
@@ -56,10 +57,16 @@ document.addEventListener("keydown", (e) => {
     if (textToDisplay) {
       const spanRegex = /<span[^>]*>[^<]*<\/span>\s*$/;
       const charRegex = /(\s|.)$/;
+      const whitespaceRegex = /\s$/;
 
-      // Check for individual letter or span element
-      if (spanRegex.test(textToDisplay)) {
+      // Check textToDisplay's last character if it's
+      // whitespace
+      if (whitespaceRegex.test(textToDisplay)) {
+        textToDisplay = textToDisplay.replace(whitespaceRegex, "");
+        // span element
+      } else if (spanRegex.test(textToDisplay)) {
         textToDisplay = textToDisplay.replace(spanRegex, "");
+        // Or individual letter
       } else if (charRegex.test(textToDisplay)) {
         textToDisplay = textToDisplay.replace(charRegex, "");
       }
