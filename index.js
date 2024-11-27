@@ -36,21 +36,24 @@ const letterArr = letterStr.split("");
 // Listen to the key event in the window document
 document.addEventListener("keydown", (e) => {
   const char = e.key;
-  if (char.length === 1 || char.length === "Spacebar") {
+  // Do nothing when it's the end of the string
+  if (letterArr.length === 0) {
+    return;
+  } else if (char.length === 1 || char.length === "Spacebar") {
     let removedChar = "";
     if (char === letterArr[0]) {
       removedChar = letterArr.shift();
       removedText.push(removedChar);
       // console.log(removedText);
       textToDisplay += removedChar;
-      console.log(textToDisplay);
+      // console.log(textToDisplay);
       textDisplay.innerHTML = textToDisplay;
     } else {
       removedChar = letterArr.shift();
       removedText.push(removedChar);
       const wrongText = `<span style="color:red;">${removedChar}</span>`;
       textToDisplay += wrongText;
-      console.log(textToDisplay);
+      // console.log(textToDisplay);
       textDisplay.innerHTML = textToDisplay;
     }
   } else if (char === "Backspace") {
@@ -70,12 +73,13 @@ document.addEventListener("keydown", (e) => {
       } else if (charRegex.test(textToDisplay)) {
         textToDisplay = textToDisplay.replace(charRegex, "");
       }
-      console.log(textToDisplay);
+      // console.log(textToDisplay);
       const returnedChar = removedText.pop();
       letterArr.unshift(returnedChar);
       textDisplay.innerHTML = textToDisplay;
     }
   }
+  console.log(letterArr);
 });
 
 // Display or delete text on cursorLayer
