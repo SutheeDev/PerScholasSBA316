@@ -1,6 +1,6 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 
-let letterStr = "Example of the sentence here";
+let letterStr = "type";
 
 const text = document.getElementById("text");
 const textContainer = document.createElement("div");
@@ -95,6 +95,7 @@ document.addEventListener("keydown", (e) => {
   if (letterArr.length === 0) {
     stopwatchStarted = false;
     stopStopwatch();
+    showStats();
   }
   // console.log(letterArr);
 });
@@ -115,3 +116,16 @@ cursorLayer.addEventListener("input", (e) => {
     cursorLayer.value = letterStr;
   }
 });
+
+const showStats = () => {
+  console.log("show stats");
+  const statsContainer = document.querySelector(".stats");
+  const wpm = document.querySelector(".wpm");
+  const acc = document.querySelector(".acc");
+
+  wpm.textContent = "WPM 51";
+  acc.textContent = "ACC 98%";
+
+  statsContainer.style.visibility = "visible";
+  statsContainer.style.zIndex = "10";
+};
