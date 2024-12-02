@@ -60,10 +60,12 @@ textarea {
   text-align: center;
 }
 
-.letter {
+.letter,
+.stats {
   display: grid;
   place-items: start;
   height: 100%;
+  background: wheat;
 }
 
 .cursor,
@@ -78,8 +80,8 @@ textarea {
 }
 
 .textDisplay {
-  opacity: 1;
   z-index: 3;
+  opacity: 1;
   color: var(--white);
   background: transparent;
 }
@@ -101,8 +103,8 @@ textarea {
 }
 
 .placeholder {
-  opacity: 1;
   z-index: 1;
+  opacity: 1;
   color: var(--black1);
   background-color: var(--black);
 }

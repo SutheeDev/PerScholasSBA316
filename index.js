@@ -1,4 +1,6 @@
-let letterStr = "Example sentence you can type";
+import { startStopwatch, stopStopwatch } from "./stopwatch.js";
+
+let letterStr = "Example of the sentence here";
 
 const text = document.getElementById("text");
 const textContainer = document.createElement("div");
@@ -32,14 +34,24 @@ text.prepend(textContainer);
 cursorLayer.focus();
 
 const letterArr = letterStr.split("");
+let stopwatchStarted = false;
 
 // Listen to the key event in the window document
 document.addEventListener("keydown", (e) => {
-  const char = e.key;
+  // Start the stopwatch
+  if (!stopwatchStarted) {
+    stopwatchStarted = true;
+    startStopwatch();
+  }
+
   // Do nothing when it's the end of the string
   if (letterArr.length === 0) {
     return;
-  } else if (char.length === 1 || char.length === "Spacebar") {
+  }
+
+  // Check typed character
+  const char = e.key;
+  if (char.length === 1 || char.length === "Spacebar") {
     let removedChar = "";
     if (char === letterArr[0]) {
       removedChar = letterArr.shift();
@@ -79,7 +91,12 @@ document.addEventListener("keydown", (e) => {
       textDisplay.innerHTML = textToDisplay;
     }
   }
-  console.log(letterArr);
+
+  if (letterArr.length === 0) {
+    stopwatchStarted = false;
+    stopStopwatch();
+  }
+  // console.log(letterArr);
 });
 
 // Display or delete text on cursorLayer
