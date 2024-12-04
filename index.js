@@ -3,6 +3,9 @@ import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 let letterStr = "type type";
 const wordsCount = Math.ceil(letterStr.length / 5);
 let wordsPerMins = 0;
+let correctKeystrokes = 0;
+let totalKeystrokes = 0;
+let accuracy = 0;
 
 const text = document.getElementById("text");
 
@@ -65,6 +68,9 @@ const startGame = () => {
         textToDisplay += removedChar;
         // console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
+
+        correctKeystrokes++;
+        totalKeystrokes++;
       } else {
         removedChar = letterArr.shift();
         removedText.push(removedChar);
@@ -72,8 +78,12 @@ const startGame = () => {
         textToDisplay += wrongText;
         // console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
+
+        totalKeystrokes++;
       }
     } else if (char === "Backspace") {
+      totalKeystrokes++;
+
       if (textToDisplay) {
         const spanRegex = /<span[^>]*>[^<]*<\/span>\s*$/;
         const charRegex = /(\s|.)$/;
@@ -101,6 +111,7 @@ const startGame = () => {
       stopwatchStarted = false;
       const min = stopStopwatch();
       wordsPerMins = (wordsCount / min).toFixed();
+      accuracy = ((correctKeystrokes / totalKeystrokes) * 100).toFixed(2);
       showStats();
     }
     // console.log(letterArr);
@@ -135,7 +146,7 @@ const showStats = () => {
   // cursorLayer.value = "";
 
   wpm.textContent = `WPM ${wordsPerMins}`;
-  acc.textContent = "ACC 98%";
+  acc.textContent = `ACC ${accuracy}%`;
 
   statsContainer.style.visibility = "visible";
   statsContainer.style.zIndex = "10";
