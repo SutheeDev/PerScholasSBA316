@@ -1,6 +1,8 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 
-let letterStr = "type";
+let letterStr = "type type";
+const wordsCount = Math.ceil(letterStr.length / 5);
+let wordsPerMins = 0;
 
 const text = document.getElementById("text");
 
@@ -97,7 +99,8 @@ const startGame = () => {
 
     if (letterArr.length === 0) {
       stopwatchStarted = false;
-      stopStopwatch();
+      const min = stopStopwatch();
+      wordsPerMins = (wordsCount / min).toFixed();
       showStats();
     }
     // console.log(letterArr);
@@ -131,7 +134,7 @@ const showStats = () => {
   console.log("show stats");
   // cursorLayer.value = "";
 
-  wpm.textContent = "WPM 51";
+  wpm.textContent = `WPM ${wordsPerMins}`;
   acc.textContent = "ACC 98%";
 
   statsContainer.style.visibility = "visible";
