@@ -46,14 +46,9 @@ textarea {
 .mode {
   display: flex;
 }
-/* .header {
-  background: wheat;
-} */
 #text {
   height: 70%;
-  /* margin-top: 50px; */
   display: grid;
-  /* place-items: center; */
 }
 
 #text h4 {
@@ -85,7 +80,6 @@ textarea {
 
 .stats h1 {
   font-size: 50px;
-  /* background: red; */
 }
 
 .icons {
@@ -147,5 +141,4 @@ textarea {
 
 footer {
   text-align: center;
-  /* background: wheat; */
 }

@@ -64,11 +64,10 @@ const startGame = () => {
       if (char === letterArr[0]) {
         removedChar = letterArr.shift();
         removedText.push(removedChar);
-        // console.log(removedText);
         textToDisplay += removedChar;
-        // console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
+        // Increment the correct keystrokes
         correctKeystrokes++;
         totalKeystrokes++;
       } else {
@@ -76,7 +75,6 @@ const startGame = () => {
         removedText.push(removedChar);
         const wrongText = `<span style="color:red;">${removedChar}</span>`;
         textToDisplay += wrongText;
-        // console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         totalKeystrokes++;
@@ -100,7 +98,6 @@ const startGame = () => {
         } else if (charRegex.test(textToDisplay)) {
           textToDisplay = textToDisplay.replace(charRegex, "");
         }
-        // console.log(textToDisplay);
         const returnedChar = removedText.pop();
         letterArr.unshift(returnedChar);
         textDisplay.innerHTML = textToDisplay;
@@ -110,11 +107,12 @@ const startGame = () => {
     if (letterArr.length === 0) {
       stopwatchStarted = false;
       const min = stopStopwatch();
+      // Calculate the WPM
       wordsPerMins = (wordsCount / min).toFixed();
+      // Calculate the accuracy
       accuracy = ((correctKeystrokes / totalKeystrokes) * 100).toFixed(2);
       showStats();
     }
-    // console.log(letterArr);
   });
 
   // Display or delete text on cursorLayer
@@ -142,9 +140,6 @@ const reset = document.querySelector(".reset");
 const next = document.querySelector(".next");
 
 const showStats = () => {
-  console.log("show stats");
-  // cursorLayer.value = "";
-
   wpm.textContent = `WPM ${wordsPerMins}`;
   acc.textContent = `ACC ${accuracy}%`;
 
