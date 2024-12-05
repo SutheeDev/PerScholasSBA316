@@ -10,6 +10,20 @@ const getTextToType = (level = "easy") => {
   return str;
 };
 
+const difficultyMap = [
+  { display: "Snail's Pace", value: "easy" },
+  { display: "Hotmail Hustle", value: "medium" },
+  { display: "Sonic Slug", value: "hard" },
+  { display: "Flash Snail", value: "insane" },
+];
+
+const levelBtns = document.querySelectorAll(".level-btn");
+levelBtns.forEach((levelBtn) => {
+  levelBtn.addEventListener("click", () => {
+    console.log(levelBtn.textContent);
+  });
+});
+
 let letterStr = getTextToType();
 
 const wordsCount = Math.ceil(letterStr.length / 5);
