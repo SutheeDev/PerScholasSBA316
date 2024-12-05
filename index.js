@@ -1,6 +1,16 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
+import textToType from "./textToType.js";
 
-let letterStr = "type type";
+const getTextToType = (level = "easy") => {
+  const textArray = textToType.filter((text) => text.level === level);
+
+  const textIndex = Math.floor(Math.random() * textArray.length);
+  const str = textArray[textIndex].str;
+  return str;
+};
+
+let letterStr = getTextToType();
+
 const wordsCount = Math.ceil(letterStr.length / 5);
 let wordsPerMins = 0;
 let correctKeystrokes = 0;
@@ -59,7 +69,7 @@ const startGame = () => {
 
     // Check typed character
     const char = e.key;
-    if (char.length === 1 || char.length === "Spacebar") {
+    if (char.length === 1 || char === "Spacebar") {
       let removedChar = "";
       if (char === letterArr[0]) {
         removedChar = letterArr.shift();
