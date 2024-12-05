@@ -46,10 +46,18 @@ textarea {
 .nav {
   display: flex;
   justify-content: space-between;
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: var(--white);
 }
 
-.mode {
+.header {
+  margin-bottom: 50px;
+}
+
+.mode-container {
   display: flex;
+  flex-direction: column;
 }
 #text {
   height: 70%;
@@ -149,14 +157,46 @@ footer {
   text-align: center;
 }
 
-/* @media screen and (min-width: 700px) {
-  body {
-    padding: 2em 5em;
-  }
+.level-btn {
+  font-size: 14px;
+  background: none;
+  border: none;
+  color: var(--black3);
 }
 
-@media screen and (min-width: 1000px) {
-  body {
-    padding: 2em 10em;
+.mode {
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.mode-btn {
+  display: flex;
+  justify-content: space-between;
+}
+.level-btn {
+  width: 100%;
+  padding: 0 5px;
+  border-left: 1px solid;
+  cursor: pointer;
+}
+
+.level-btn:last-child {
+  border-right: 1px solid;
+}
+
+@media screen and (min-width: 700px) {
+  .mode-container {
+    flex-direction: row;
   }
-} */
+  .mode {
+    margin-bottom: 0;
+    padding: 0 30px 0 0;
+  }
+  .mode-btn {
+    justify-content: start;
+  }
+  .level-btn {
+    width: auto;
+    padding: 0 30px;
+  }
+}
