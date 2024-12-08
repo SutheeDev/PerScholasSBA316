@@ -17,14 +17,24 @@ const difficultyMap = [
   { display: "Flash Snail", value: "insane" },
 ];
 
+// Listen to difficulty-level btns
+let value;
+let letterStr = "";
 const levelBtns = document.querySelectorAll(".level-btn");
 levelBtns.forEach((levelBtn) => {
   levelBtn.addEventListener("click", () => {
-    console.log(levelBtn.textContent);
+    for (let obj of difficultyMap) {
+      if (obj.display === levelBtn.textContent) {
+        value = obj.value;
+      } else {
+        continue;
+      }
+    }
+    letterStr = getTextToType(value);
+    startGame();
   });
 });
-
-let letterStr = getTextToType();
+letterStr = getTextToType(value);
 
 const wordsCount = Math.ceil(letterStr.length / 5);
 let wordsPerMins = 0;
@@ -48,8 +58,6 @@ cursorLayer.classList.add("cursor");
 exampleText.classList.add("placeholder");
 
 // Add attribute and content
-exampleText.textContent = letterStr;
-exampleText.setAttribute("value", letterStr);
 exampleText.setAttribute("disabled", true);
 
 // Assemble the typing area
@@ -58,6 +66,10 @@ textContainer.append(cursorLayer);
 textContainer.append(exampleText);
 
 const startGame = () => {
+  // Add string the user has to type to the exampleText
+  exampleText.textContent = letterStr;
+  exampleText.setAttribute("value", letterStr);
+
   let textToDisplay = "";
   let removedText = [];
   let stopwatchStarted = false;
