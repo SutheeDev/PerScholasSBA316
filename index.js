@@ -1,6 +1,6 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 import textToType from "./textToType.js";
-import hideStats from "./hideStats.js";
+import showStats from "./showStats.js";
 
 const getTextToType = (level = "easy") => {
   const textArray = textToType.filter((text) => text.level === level);
@@ -73,7 +73,7 @@ textContainer.append(textDisplay);
 textContainer.append(cursorLayer);
 textContainer.append(exampleText);
 
-const startGame = () => {
+export const startGame = () => {
   // Add string the user has to type to the exampleText
   exampleText.textContent = letterStr;
   exampleText.setAttribute("value", letterStr);
@@ -196,7 +196,7 @@ const startGame = () => {
       wordsPerMins = (wordsCount / min).toFixed();
       // Calculate the accuracy
       accuracy = ((correctKeystrokes / totalKeystrokes) * 100).toFixed(2);
-      showStats();
+      showStats(wordsPerMins, accuracy, cursorLayer);
     }
   });
 
@@ -215,34 +215,6 @@ const startGame = () => {
     } else {
       cursorLayer.value = letterStr;
     }
-  });
-};
-
-const statsContainer = document.querySelector(".stats");
-const wpm = document.querySelector(".wpm");
-const acc = document.querySelector(".acc");
-const reset = document.querySelector(".reset");
-const next = document.querySelector(".next");
-
-const showStats = () => {
-  wpm.textContent = `WPM ${wordsPerMins}`;
-  acc.textContent = `ACC ${accuracy}%`;
-
-  statsContainer.style.visibility = "visible";
-  statsContainer.style.zIndex = "10";
-
-  reset.addEventListener("click", () => {
-    console.log("reset game");
-    cursorLayer.value = "";
-    hideStats();
-    startGame();
-  });
-
-  next.addEventListener("click", () => {
-    console.log("Next game");
-    cursorLayer.value = "";
-    hideStats();
-    startGame();
   });
 };
 
