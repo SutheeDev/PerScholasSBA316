@@ -161,6 +161,12 @@ footer {
   font-size: 14px;
   background: none;
   border: none;
+  color: var(--black1);
+
+  transition: all 0.2s ease;
+}
+
+.level-btn:hover {
   color: var(--black3);
 }
 
@@ -176,12 +182,16 @@ footer {
 .level-btn {
   width: 100%;
   padding: 0 5px;
-  border-left: 1px solid;
+  border-left: 1px solid var(--black1);
   cursor: pointer;
 }
 
 .level-btn:last-child {
   border-right: 1px solid;
+}
+
+.selected {
+  color: var(--white);
 }
 
 @media screen and (min-width: 700px) {
