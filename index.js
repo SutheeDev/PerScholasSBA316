@@ -23,6 +23,13 @@ let letterStr = "";
 const levelBtns = document.querySelectorAll(".level-btn");
 levelBtns.forEach((levelBtn) => {
   levelBtn.addEventListener("click", () => {
+    // Remove 'selected' class from all btns
+    levelBtns.forEach((btn) => {
+      btn.classList.remove("selected");
+    });
+    // Add 'selected' class to clicked btn
+    levelBtn.classList.add("selected");
+
     for (let obj of difficultyMap) {
       if (obj.display === levelBtn.textContent) {
         value = obj.value;

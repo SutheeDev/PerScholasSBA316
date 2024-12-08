@@ -163,7 +163,7 @@ footer {
   border: none;
   color: var(--black1);
 
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .level-btn:hover {

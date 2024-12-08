@@ -1,15 +1,15 @@
 const textToType = [
   {
     level: "easy",
-    str: `1`,
+    str: `123`,
   },
   {
     level: "easy",
-    str: `2`,
+    str: `213`,
   },
   {
     level: "easy",
-    str: `3`,
+    str: `321`,
   },
   { level: "medium", str: "type1" },
   { level: "medium", str: "type2" },
