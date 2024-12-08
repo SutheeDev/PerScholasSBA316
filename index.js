@@ -1,13 +1,7 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 import showStats from "./showStats.js";
 import getTextToType from "./getTextToType.js";
-
-const difficultyMap = [
-  { display: "Snail's Pace", value: "easy" },
-  { display: "Hotmail Hustle", value: "medium" },
-  { display: "Sonic Slug", value: "hard" },
-  { display: "Flash Snail", value: "insane" },
-];
+import difficultyMap from "./difficultyMap.js";
 
 // Listen to difficulty-level btns
 let value;
