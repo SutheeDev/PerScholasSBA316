@@ -96,12 +96,46 @@ const startGame = () => {
 
     // Check typed character
     const char = e.key;
+    let removedChar = "";
     if (char.length === 1 || char === "Spacebar") {
-      let removedChar = "";
       if (char === letterArr[0]) {
         removedChar = letterArr.shift();
         removedText.push(removedChar);
         textToDisplay += removedChar;
+        console.log(textToDisplay);
+        textDisplay.innerHTML = textToDisplay;
+
+        // Increment the correct keystrokes
+        correctKeystrokes++;
+        totalKeystrokes++;
+      } else if (letterArr[0].charCodeAt() === 10) {
+        console.log("wrong enter");
+        removedChar = letterArr.shift();
+        removedText.push(removedChar);
+        textToDisplay += "<br>";
+        console.log(textToDisplay);
+        textDisplay.innerHTML = textToDisplay;
+
+        totalKeystrokes++;
+      } else {
+        removedChar = letterArr.shift();
+        removedText.push(removedChar);
+        const wrongText = `<span style="color:red;">${removedChar}</span>`;
+        textToDisplay += wrongText;
+        console.log(textToDisplay);
+        textDisplay.innerHTML = textToDisplay;
+
+        totalKeystrokes++;
+      }
+    } else if (char === "Enter") {
+      const uni = letterArr[0].charCodeAt();
+      if (uni === 10) {
+        console.log("correct enter");
+        removedChar = letterArr.shift();
+        removedText.push(removedChar);
+        // textToDisplay += removedChar;
+        textToDisplay += "<br>";
+        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         // Increment the correct keystrokes
@@ -112,6 +146,7 @@ const startGame = () => {
         removedText.push(removedChar);
         const wrongText = `<span style="color:red;">${removedChar}</span>`;
         textToDisplay += wrongText;
+        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         totalKeystrokes++;
@@ -120,13 +155,17 @@ const startGame = () => {
       totalKeystrokes++;
 
       if (textToDisplay) {
+        const lineBreakRegex = /<br\s*\/?>\s*$/;
         const spanRegex = /<span[^>]*>[^<]*<\/span>\s*$/;
         const charRegex = /(\s|.)$/;
         const whitespaceRegex = /\s$/;
 
         // Check textToDisplay's last character if it's
-        // whitespace
-        if (whitespaceRegex.test(textToDisplay)) {
+        // Line break
+        if (lineBreakRegex.test(textToDisplay)) {
+          textToDisplay = textToDisplay.replace(lineBreakRegex, "");
+          // whitespace
+        } else if (whitespaceRegex.test(textToDisplay)) {
           textToDisplay = textToDisplay.replace(whitespaceRegex, "");
           // span element
         } else if (spanRegex.test(textToDisplay)) {
@@ -139,6 +178,7 @@ const startGame = () => {
         letterArr.unshift(returnedChar);
         textDisplay.innerHTML = textToDisplay;
       }
+      console.log(textToDisplay);
     }
 
     if (letterArr.length === 0) {
