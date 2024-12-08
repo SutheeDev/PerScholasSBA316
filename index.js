@@ -1,15 +1,6 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
-import textToType from "./textToType.js";
 import showStats from "./showStats.js";
-
-const getTextToType = (level = "easy") => {
-  const textArray = textToType.filter((text) => text.level === level);
-
-  // Randomly pick text
-  const textIndex = Math.floor(Math.random() * textArray.length);
-  const str = textArray[textIndex].str;
-  return str;
-};
+import getTextToType from "./getTextToType.js";
 
 const difficultyMap = [
   { display: "Snail's Pace", value: "easy" },
