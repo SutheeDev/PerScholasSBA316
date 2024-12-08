@@ -1,5 +1,6 @@
 import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 import textToType from "./textToType.js";
+import hideStats from "./hideStats.js";
 
 const getTextToType = (level = "easy") => {
   const textArray = textToType.filter((text) => text.level === level);
@@ -243,11 +244,6 @@ const showStats = () => {
     hideStats();
     startGame();
   });
-};
-
-const hideStats = () => {
-  statsContainer.style.visibility = "hidden";
-  statsContainer.style.zIndex = "-10";
 };
 
 startGame();
