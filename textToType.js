@@ -21,8 +21,7 @@ const textToType = [
   },
   {
     level: "medium",
-    str: `
-    Hi Grandpa,\n\nI tried your cookie recipe, but I accidentally added salt instead of sugar. Now the cookies taste like the ocean! Should I call them “beach cookies” and hope nobody notices, or start over? Please reply quickly; the party is tonight!\n\nLove,\nSam`,
+    str: `Hi Grandpa,\n\nI tried your cookie recipe, but I accidentally added salt instead of sugar. Now the cookies taste like the ocean! Should I call them “beach cookies” and hope nobody notices, or start over? Please reply quickly; the party is tonight!\n\nLove,\nSam`,
   },
   {
     level: "medium",

@@ -2,10 +2,21 @@ import { startStopwatch, stopStopwatch } from "./stopwatch.js";
 import showStats from "./showStats.js";
 import getTextToType from "./getTextToType.js";
 import difficultyMap from "./difficultyMap.js";
+import initiateGame from "./initiateGame.js";
+
+let wordsPerMins = 0;
+let correctKeystrokes = 0;
+let totalKeystrokes = 0;
+let accuracy = 0;
+let wordsCount = 0;
+let level;
+let letterStr = "";
+
+// Initate elements to start game
+const { text, textContainer, textDisplay, cursorLayer, exampleText } =
+  initiateGame();
 
 // Listen to difficulty-level btns
-let value;
-let letterStr = "";
 const levelBtns = document.querySelectorAll(".level-btn");
 levelBtns.forEach((levelBtn) => {
   levelBtn.addEventListener("click", () => {
@@ -18,47 +29,25 @@ levelBtns.forEach((levelBtn) => {
 
     for (let obj of difficultyMap) {
       if (obj.display === levelBtn.textContent) {
-        value = obj.value;
+        level = obj.level;
       } else {
         continue;
       }
     }
-    letterStr = getTextToType(value);
+    letterStr = getTextToType(level);
     startGame();
   });
 });
-letterStr = getTextToType(value);
-
-const wordsCount = Math.ceil(letterStr.length / 5);
-let wordsPerMins = 0;
-let correctKeystrokes = 0;
-let totalKeystrokes = 0;
-let accuracy = 0;
-
-const text = document.getElementById("text");
-
-const textContainer = document.createElement("div");
-textContainer.classList.add("letter");
-
-// Create three layers of typing area
-const textDisplay = document.createElement("h4");
-const cursorLayer = document.createElement("textarea");
-const exampleText = document.createElement("textarea");
-
-// Add classes
-textDisplay.classList.add("textDisplay");
-cursorLayer.classList.add("cursor");
-exampleText.classList.add("placeholder");
-
-// Add attribute and content
-exampleText.setAttribute("disabled", true);
-
-// Assemble the typing area
-textContainer.append(textDisplay);
-textContainer.append(cursorLayer);
-textContainer.append(exampleText);
+letterStr = getTextToType(level);
 
 export const startGame = () => {
+  // Reset all values
+  wordsPerMins = 0;
+  correctKeystrokes = 0;
+  totalKeystrokes = 0;
+  accuracy = 0;
+  wordsCount = Math.ceil(letterStr.length / 5);
+
   // Add string the user has to type to the exampleText
   exampleText.textContent = letterStr;
   exampleText.setAttribute("value", letterStr);
