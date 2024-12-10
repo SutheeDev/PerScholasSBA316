@@ -84,7 +84,6 @@ export const startGame = () => {
 
   // Listen to the key event in the window document
   keydownHandler = (e) => {
-    console.log(letterArr.length);
     // Do nothing when it's the end of the string
     if (letterArr.length === 0 || isShowStats) {
       return;
@@ -193,8 +192,6 @@ export const startGame = () => {
   // Display or delete text on cursorLayer
   let currentIndex = 0;
   cursorLayer.addEventListener("input", (e) => {
-    // e.preventDefault();
-    console.log(cursorLayer.value);
     if (
       currentIndex < letterStr.length &&
       e.inputType !== "deleteContentBackward"

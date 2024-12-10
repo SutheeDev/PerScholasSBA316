@@ -103,6 +103,7 @@ const textToType = [
 
 export default textToType;
 
+// Test Text
 // const textToType = [
 //   { textId: 1, level: "easy", str: "111" },
 //   { textId: 2, level: "easy", str: "222" },
@@ -117,5 +118,4 @@ export default textToType;
 //   { textId: 11, level: "insane", str: "type type type 222" },
 //   { textId: 12, level: "insane", str: "type type type 333" },
 // ];
-
 // export default textToType;

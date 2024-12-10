@@ -51,10 +51,6 @@ textarea {
   color: var(--white);
 }
 
-/* .header { */
-/* margin-bottom: 50px; */
-/* } */
-
 .mode-container {
   display: flex;
   flex-direction: column;
@@ -129,7 +125,6 @@ textarea {
   opacity: 1;
   color: var(--white);
   background: transparent;
-  /* background-color: wheat; */
 }
 
 .cursor {
