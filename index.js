@@ -3,14 +3,20 @@ import showStats from "./showStats.js";
 import getTextToType from "./getTextToType.js";
 import difficultyMap from "./difficultyMap.js";
 import initiateGame from "./initiateGame.js";
+import textToType from "./textToType.js";
+import replayGame from "./replay.js";
+import getNextGame from "./getNextGame.js";
+import hideStats from "./hideStats.js";
 
 let wordsPerMins = 0;
 let correctKeystrokes = 0;
 let totalKeystrokes = 0;
 let accuracy = 0;
 let wordsCount = 0;
-let level;
+let level = "easy";
 let letterStr = "";
+let textId;
+let isShowStats = false;
 
 // Initate elements to start game
 const { text, textContainer, textDisplay, cursorLayer, exampleText } =
@@ -29,16 +35,23 @@ levelBtns.forEach((levelBtn) => {
 
     for (let obj of difficultyMap) {
       if (obj.display === levelBtn.textContent) {
-        level = obj.level;
+        level = obj.value;
       } else {
         continue;
       }
     }
-    letterStr = getTextToType(level);
+    const { string, id } = getTextToType(level, textToType);
+    letterStr = string;
+    textId = id;
+    cursorLayer.value = "";
+    isShowStats = false;
+    hideStats();
     startGame();
   });
 });
-letterStr = getTextToType(level);
+const { string, id } = getTextToType(level, textToType);
+letterStr = string;
+textId = id;
 
 export const startGame = () => {
   // Reset all values
@@ -65,37 +78,36 @@ export const startGame = () => {
 
   // Listen to the key event in the window document
   document.addEventListener("keydown", (e) => {
+    console.log(letterArr.length);
+    // Do nothing when it's the end of the string
+    if (letterArr.length === 0 || isShowStats) {
+      return;
+    }
+
     // Start the stopwatch
     if (!stopwatchStarted) {
       stopwatchStarted = true;
       startStopwatch();
     }
 
-    // Do nothing when it's the end of the string
-    if (letterArr.length === 0) {
-      return;
-    }
-
     // Check typed character
     const char = e.key;
     let removedChar = "";
+
     if (char.length === 1 || char === "Spacebar") {
       if (char === letterArr[0]) {
         removedChar = letterArr.shift();
         removedText.push(removedChar);
         textToDisplay += removedChar;
-        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         // Increment the correct keystrokes
         correctKeystrokes++;
         totalKeystrokes++;
       } else if (letterArr[0].charCodeAt() === 10) {
-        console.log("wrong enter");
         removedChar = letterArr.shift();
         removedText.push(removedChar);
         textToDisplay += "<br>";
-        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         totalKeystrokes++;
@@ -104,7 +116,6 @@ export const startGame = () => {
         removedText.push(removedChar);
         const wrongText = `<span style="color:red;">${removedChar}</span>`;
         textToDisplay += wrongText;
-        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         totalKeystrokes++;
@@ -112,12 +123,10 @@ export const startGame = () => {
     } else if (char === "Enter") {
       const uni = letterArr[0].charCodeAt();
       if (uni === 10) {
-        console.log("correct enter");
         removedChar = letterArr.shift();
         removedText.push(removedChar);
         // textToDisplay += removedChar;
         textToDisplay += "<br>";
-        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         // Increment the correct keystrokes
@@ -128,7 +137,6 @@ export const startGame = () => {
         removedText.push(removedChar);
         const wrongText = `<span style="color:red;">${removedChar}</span>`;
         textToDisplay += wrongText;
-        console.log(textToDisplay);
         textDisplay.innerHTML = textToDisplay;
 
         totalKeystrokes++;
@@ -160,9 +168,9 @@ export const startGame = () => {
         letterArr.unshift(returnedChar);
         textDisplay.innerHTML = textToDisplay;
       }
-      console.log(textToDisplay);
     }
 
+    // Check letterArr length after keydown
     if (letterArr.length === 0) {
       stopwatchStarted = false;
       const min = stopStopwatch();
@@ -170,26 +178,58 @@ export const startGame = () => {
       wordsPerMins = (wordsCount / min).toFixed();
       // Calculate the accuracy
       accuracy = ((correctKeystrokes / totalKeystrokes) * 100).toFixed(2);
-      showStats(wordsPerMins, accuracy, cursorLayer);
+      isShowStats = true;
+      showStats(wordsPerMins, accuracy);
     }
   });
 
   // Display or delete text on cursorLayer
+  // let currentIndex = 0;
+  // cursorLayer.addEventListener("input", (e) => {
+  //   // e.preventDefault();
+  //   console.log(cursorLayer.value);
+  //   if (
+  //     currentIndex < letterStr.length &&
+  //     e.inputType !== "deleteContentBackward"
+  //   ) {
+  //     cursorLayer.value = letterStr.slice(0, currentIndex + 1);
+  //     currentIndex++;
+  //   } else if (e.inputType === "deleteContentBackward") {
+  //     currentIndex--;
+  //     cursorLayer.value = letterStr.slice(0, currentIndex);
+  //   } else {
+  //     cursorLayer.value = letterStr;
+  //   }
+  // });
   let currentIndex = 0;
   cursorLayer.addEventListener("input", (e) => {
-    if (
-      currentIndex < letterStr.length &&
-      e.inputType !== "deleteContentBackward"
-    ) {
-      cursorLayer.value = letterStr.slice(0, currentIndex + 1);
+    e.preventDefault();
+
+    if (e.inputType === "insertText") {
       currentIndex++;
     } else if (e.inputType === "deleteContentBackward") {
       currentIndex--;
-      cursorLayer.value = letterStr.slice(0, currentIndex);
-    } else {
-      cursorLayer.value = letterStr;
     }
+
+    cursorLayer.value = letterStr.slice(0, currentIndex);
   });
 };
 
 startGame();
+
+const reset = document.querySelector(".reset");
+reset.addEventListener("click", () => {
+  cursorLayer.value = "";
+  isShowStats = false;
+  replayGame();
+});
+
+const next = document.querySelector(".next");
+next.addEventListener("click", () => {
+  cursorLayer.value = "";
+  isShowStats = false;
+  const returnStr = getNextGame(textId, level);
+  letterStr = returnStr.string;
+  textId = returnStr.id;
+  startGame();
+});

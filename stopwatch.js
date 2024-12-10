@@ -11,6 +11,7 @@ const startStopwatch = () => {
 };
 
 const stopStopwatch = () => {
+  console.log("stop");
   clearInterval(stopwatch);
   return min;
 };
