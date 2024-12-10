@@ -24,6 +24,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
   - **Flash Snail**: An insanely difficult level with unusual combinations of words, symbols, and numbers.
 
 <br>
+
 ![Difficulty Select](https://res.cloudinary.com/dnc7potxo/image/upload/v1733866565/ReadMe-Images/Per%20Scholas/SBA316/DiffSelect.gif)
 <br><br>
 
@@ -33,6 +34,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
   - Assess your typing accuracy (**ACC**).
 
 <br>
+
 ![Performance Evaluation](https://res.cloudinary.com/dnc7potxo/image/upload/v1733866565/ReadMe-Images/Per%20Scholas/SBA316/Getresult.gif)
 <br><br>
 
