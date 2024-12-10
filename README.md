@@ -11,7 +11,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
 - [Feedback](#feedback)
   <br><br>
 
-## Features
+## Features <a name='features'></a>
 
 - **Four Difficulty Levels**:
 
@@ -30,7 +30,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
 
 <br><br>
 
-## How to Play
+## How to Play <a name='howtoplay'></a>
 
 1. Choose a difficulty level from the main menu.
 2. Start typing the provided email-like text as quickly and accurately as possible.
@@ -39,7 +39,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
 
 <br><br>
 
-## Technologies Used
+## Technologies Used <a name='technologies'></a>
 
 - **HTML**: For structuring the application.
 - **CSS**: For styling the minimalistic design and layout.
@@ -47,6 +47,6 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
 
 <br><br>
 
-## Feedback
+## Feedback <a name='feedback'></a>
 
 Feedback to improve this project is welcome. If you have any suggestions or would like to collaborate, please get in touch with me on [GitHub](https://github.com/SutheeDev). Thanks!
