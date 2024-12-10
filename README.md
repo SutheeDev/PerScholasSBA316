@@ -23,6 +23,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
   - **Sonic Slug**: A faster pace for the pros.
   - **Flash Snail**: An insanely difficult level with unusual combinations of words, symbols, and numbers.
 
+<br>
 ![Difficulty Select](https://res.cloudinary.com/dnc7potxo/image/upload/v1733866565/ReadMe-Images/Per%20Scholas/SBA316/DiffSelect.gif)
 <br><br>
 
@@ -31,6 +32,7 @@ Welcome to SBA316, where I developed [SnailMail](https://perscholas-sba316.netli
   - Measure your typing speed in **Words Per Minute (WPM)**.
   - Assess your typing accuracy (**ACC**).
 
+<br>
 ![Performance Evaluation](https://res.cloudinary.com/dnc7potxo/image/upload/v1733866565/ReadMe-Images/Per%20Scholas/SBA316/Getresult.gif)
 <br><br>
 
