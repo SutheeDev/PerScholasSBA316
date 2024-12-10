@@ -17,6 +17,7 @@ let level = "easy";
 let letterStr = "";
 let textId;
 let isShowStats = false;
+let keydownHandler = null;
 
 // Initate elements to start game
 const { text, textContainer, textDisplay, cursorLayer, exampleText } =
@@ -76,8 +77,13 @@ export const startGame = () => {
 
   const letterArr = letterStr.split("");
 
+  // Remove event listener to avoid double firing
+  if (keydownHandler) {
+    document.removeEventListener("keydown", keydownHandler);
+  }
+
   // Listen to the key event in the window document
-  document.addEventListener("keydown", (e) => {
+  keydownHandler = (e) => {
     console.log(letterArr.length);
     // Do nothing when it's the end of the string
     if (letterArr.length === 0 || isShowStats) {
@@ -181,37 +187,26 @@ export const startGame = () => {
       isShowStats = true;
       showStats(wordsPerMins, accuracy);
     }
-  });
+  };
+  document.addEventListener("keydown", keydownHandler);
 
   // Display or delete text on cursorLayer
-  // let currentIndex = 0;
-  // cursorLayer.addEventListener("input", (e) => {
-  //   // e.preventDefault();
-  //   console.log(cursorLayer.value);
-  //   if (
-  //     currentIndex < letterStr.length &&
-  //     e.inputType !== "deleteContentBackward"
-  //   ) {
-  //     cursorLayer.value = letterStr.slice(0, currentIndex + 1);
-  //     currentIndex++;
-  //   } else if (e.inputType === "deleteContentBackward") {
-  //     currentIndex--;
-  //     cursorLayer.value = letterStr.slice(0, currentIndex);
-  //   } else {
-  //     cursorLayer.value = letterStr;
-  //   }
-  // });
   let currentIndex = 0;
   cursorLayer.addEventListener("input", (e) => {
-    e.preventDefault();
-
-    if (e.inputType === "insertText") {
+    // e.preventDefault();
+    console.log(cursorLayer.value);
+    if (
+      currentIndex < letterStr.length &&
+      e.inputType !== "deleteContentBackward"
+    ) {
+      cursorLayer.value = letterStr.slice(0, currentIndex + 1);
       currentIndex++;
     } else if (e.inputType === "deleteContentBackward") {
       currentIndex--;
+      cursorLayer.value = letterStr.slice(0, currentIndex);
+    } else {
+      cursorLayer.value = letterStr;
     }
-
-    cursorLayer.value = letterStr.slice(0, currentIndex);
   });
 };
 
