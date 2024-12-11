@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap"
+      rel="stylesheet"
+    />
+    <title>SnailMail - SignIn</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="header">
+        <nav class="nav">
+          <a href="index.html" class="logo">SnailMail</a>
+        </nav>
+      </section>
+      <section id="form-container">
+        <form class="form">
+          <div class="warning"></div>
+          <div class="emailRow">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              class="email"
+              required
+            />
+          </div>
+          <div class="pwdRow">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              class="pwd"
+            />
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </section>
+      <footer>
+        <p class="footer-content">Developed by Suthee</p>
+      </footer>
+    </main>
+    <script src="inputValidation.js"></script>
+  </body>
+</html>

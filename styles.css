@@ -29,6 +29,7 @@ h1,
 h2,
 h3,
 h4,
+a,
 input,
 textarea {
   font-family: "Red Hat Text", sans-serif;
@@ -46,9 +47,21 @@ textarea {
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: end;
   font-size: 30px;
   margin-bottom: 10px;
   color: var(--white);
+}
+
+.logo,
+.signin {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.signin {
+  font-size: 14px;
+  margin-bottom: 4px;
 }
 
 .mode-container {
@@ -206,4 +219,84 @@ footer {
     width: auto;
     padding: 0 30px;
   }
+}
+
+/* ----SignIn Page ---- */
+#form-container {
+  height: 70%;
+  /* background-color: wheat; */
+  display: grid;
+  /* place-items: center; */
+  /* padding: 10px 100px; */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background: var(--black3);
+  border-radius: 5px;
+  width: 400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.emailRow,
+.pwdRow {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 20px;
+  /* background-color: blue; */
+  width: 100%;
+}
+
+.pwdRow {
+  margin-bottom: 45px;
+}
+
+input {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: var(--white);
+}
+
+/* .emailRow label {
+  color: var(--black);
+} */
+
+label {
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.submit-btn {
+  font-size: 16px;
+  background: var(--white);
+  border-radius: 2px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  color: var(--black);
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.warning {
+  background: var(--black1);
+  width: 100%;
+  text-align: center;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: none;
 }
